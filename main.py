@@ -1,29 +1,28 @@
 import copy
-import random
 from time import time
 
-from merge import *
+from input import gen_input
+from merge import merge_sort
 
 
 def main():
-    # a = [27, 24, 23, 26, 24]
-    a = random.choices(range(0, 10000000), k=1000000)
-    a1 = copy.copy(a)
-    print("original array")
-    # print(a)
+    num = 1000000
+    my_a = gen_input(num)
     t1 = time()
-    merge_sort(a, switch_threshold=8)
+    merge_sort(my_a, switch_threshold=8)
     t2 = time()
     print("sorted array time", t2-t1)
-    print(a)
-    print("original array")
+    a = copy.copy(my_a)
+    # print(a)
+    # print("original array")
     # print(a1)
+    my_a = gen_input(num)
     t3 = time()
-    merge_sort(a1, num_part=3, switch_threshold=8)
+    merge_sort(my_a, num_part=100, switch_threshold=8, n_ways=True)
     t4 = time()
     print("sorted array time", t4 - t3)
-    print(a1)
-    print(a == a1)
+    # print(a1)
+    print(a == my_a)
 
 if __name__ == "__main__":
     main()
